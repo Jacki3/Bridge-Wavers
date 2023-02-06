@@ -1,49 +1,74 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using PathCreation.Examples;
 using UnityEngine;
 
-public class CarSpawner : MonoBehaviour
+namespace PathCreation
 {
-    [SerializeField]
-    private List<Car> vehicles = new List<Car>();
-
-    [SerializeField]
-    private List<Vector3> spawns = new List<Vector3>();
-
-    [SerializeField]
-    private int minSpawnTime = 0;
-
-    [SerializeField]
-    private int maxSpawnTime = 0;
-
-    private float timer;
-
-    private int spawnTime;
-
-    void Start()
+    public class CarSpawner : MonoBehaviour
     {
-        timer = 0;
-        spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-    }
+        [SerializeField]
+        private List<PathFollower> defaultVehicles = new List<PathFollower>();
 
-    void Update()
-    {
-        timer += Time.deltaTime;
-        if (timer >= spawnTime)
+        [SerializeField]
+        private List<PathFollower> uncommonVehicles = new List<PathFollower>();
+
+        [SerializeField]
+        private List<PathFollower> rareVehicles = new List<PathFollower>();
+
+        [SerializeField]
+        private List<PathCreator> paths = new List<PathCreator>();
+
+        [SerializeField]
+        private int minSpawnTime = 0;
+
+        [SerializeField]
+        private int maxSpawnTime = 0;
+
+        [SerializeField]
+        private float uncommonVehiclesRand = 0.65f;
+
+        [SerializeField]
+        private float rareVehiclesRand = 0.9f;
+
+        private float timer;
+
+        private int spawnTime;
+
+        void Start()
         {
             timer = 0;
-            Spawn();
+            spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
         }
-    }
 
-    void Spawn()
-    {
-        spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
-        int randSpawn = Random.Range(0, spawns.Count);
-        Vector3 spawn = spawns[randSpawn];
+        void Update()
+        {
+            timer += Time.deltaTime;
+            if (timer >= spawnTime)
+            {
+                timer = 0;
+                Spawn();
+            }
+        }
 
-        int randCar = Random.Range(0, vehicles.Count);
-        Car vehicle = vehicles[randCar];
-        Car newCar = Instantiate(vehicle, spawn, vehicle.transform.rotation);
+        void Spawn()
+        {
+            spawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+            int randPath = Random.Range(0, paths.Count);
+            PathCreator path = paths[randPath];
+
+            List<PathFollower> vehicleList = defaultVehicles;
+
+            if (Random.value > rareVehiclesRand)
+                vehicleList = rareVehicles;
+            else if (Random.value > uncommonVehiclesRand)
+                vehicleList = uncommonVehicles;
+
+            int randCar = Random.Range(0, vehicleList.Count);
+            PathFollower vehicle = vehicleList[randCar];
+            PathFollower newCar =
+                Instantiate(vehicle, Vector3.zero, Quaternion.identity);
+            newCar.pathCreator = path;
+            newCar.endOfPathInstruction = EndOfPathInstruction.Stop;
+        }
     }
 }

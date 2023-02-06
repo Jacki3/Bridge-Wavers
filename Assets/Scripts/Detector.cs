@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Detector : MonoBehaviour, ITrigger
+public class Detector : MonoBehaviour
 {
     [SerializeField]
     private int detectorScore;

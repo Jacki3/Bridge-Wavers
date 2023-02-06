@@ -47,7 +47,6 @@ public class CloudsGenerator : MonoBehaviour
                 placed.transform.parent = transform;
             }
         }
-        Debug.Log (cnt);
     }
 
     void Update()

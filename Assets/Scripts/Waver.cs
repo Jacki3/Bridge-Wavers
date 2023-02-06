@@ -14,6 +14,9 @@ public class Waver : MonoBehaviour
     private Color waveColor;
 
     [SerializeField]
+    private Color hitColor;
+
+    [SerializeField]
     private UnityEngine.UI.Image waverImage;
 
     private Color defaultColor;
@@ -33,14 +36,14 @@ public class Waver : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.E) && Time.time > nextWave)
         {
-            Wave (playerName);
+            ColorChange(true);
         }
     }
 
-    private void Wave(string name)
+    public void ColorChange(bool isWave)
     {
         if (wave != null) wave(playerName);
-        waverImage.color = waveColor;
+        waverImage.color = isWave ? waveColor : hitColor;
         nextWave = Time.time + waveRate;
         StartCoroutine(LerpColourWave());
     }

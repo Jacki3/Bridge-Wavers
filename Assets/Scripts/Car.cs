@@ -1,10 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using PathCreation.Examples;
 using UnityEngine;
 
-public class Car : MovingObject
+public class Car : PathFollower
 {
     public int scoreToAdd;
+
+    [SerializeField]
+    private List<GameObject> modelPrefabs = new List<GameObject>();
 
     [SerializeField]
     private AudioSource beepSource;
@@ -12,7 +16,12 @@ public class Car : MovingObject
     [SerializeField]
     private AudioClip beepSound;
 
-    public override void WaveBack()
+    public void WaveBack()
+    {
+        Beep();
+    }
+
+    public void Beep()
     {
         beepSource.PlayOneShot (beepSound);
     }

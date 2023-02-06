@@ -29,4 +29,16 @@ public class ScoreController : MonoBehaviour
     {
         i.AddScore (scoreToAdd);
     }
+
+    private void ResetScore()
+    {
+        totalScore = 0;
+        UIController.CountUpScore (totalScore);
+        //animate
+    }
+
+    public static void ResetScoreStatic()
+    {
+        i.ResetScore();
+    }
 }

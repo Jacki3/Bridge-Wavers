@@ -29,8 +29,11 @@ public class FirstPersonMovement : MonoBehaviour
 
     private Vector3 velocity;
 
+    private Vector3 defaultPosition;
+
     void Start()
     {
+        defaultPosition = transform.position;
         characterController = GetComponent<CharacterController>();
     }
 
@@ -54,5 +57,25 @@ public class FirstPersonMovement : MonoBehaviour
         velocity.y += gravityScale * Time.deltaTime;
 
         characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Car hitCar = other.GetComponent<Car>();
+        if (hitCar != null)
+        {
+            hitCar.Beep();
+            ResetPosition();
+            ScoreController.ResetScoreStatic();
+        }
+    }
+
+    private void ResetPosition()
+    {
+        Waver playerWaver = GetComponentInChildren<Waver>();
+        if (playerWaver != null) playerWaver.ColorChange(false);
+        characterController.enabled = false;
+        transform.position = defaultPosition;
+        characterController.enabled = true;
     }
 }

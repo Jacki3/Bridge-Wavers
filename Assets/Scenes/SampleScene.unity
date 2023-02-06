@@ -1556,7 +1556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 576013660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35, y: 0, z: 0}
+  m_LocalPosition: {x: 0.35, y: 0, z: -0.32489005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2934,7 +2934,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023661977}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 3.2, y: 0, z: -4.7846913}
+  m_LocalPosition: {x: 3.2, y: 0, z: -4.484631}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5230,7 +5230,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1474915191}
-  - component: {fileID: 1474915190}
+  - component: {fileID: 1474915192}
+  - component: {fileID: 1474915193}
   m_Layer: 0
   m_Name: CarSpawner
   m_TagString: Untagged
@@ -5238,25 +5239,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1474915190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1474915189}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb69cf21fa6cc1d4f8d81e06d1afbf07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  vehicles:
-  - {fileID: -294053364947567558, guid: 7d8e55e5d8dc48c4aa93a821a92adadd, type: 3}
-  spawns:
-  - {x: -10, y: 4.95, z: -0.3}
-  - {x: 10, y: 4.95, z: 0.3}
-  minSpawnTime: 2
-  maxSpawnTime: 5
 --- !u!4 &1474915191
 Transform:
   m_ObjectHideFlags: 0
@@ -5272,6 +5254,56 @@ Transform:
   m_Father: {fileID: 775649342}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1474915192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474915189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ea2fa9ac610854c800104694cba375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultVehicles:
+  - {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
+  uncommonVehicles:
+  - {fileID: 5053422646558080232, guid: c473c1eb10d87fb489edba8579b4dbe6, type: 3}
+  rareVehicles:
+  - {fileID: 5053422646558080232, guid: 46fef3a2a86306d46b8b916450228bc6, type: 3}
+  paths:
+  - {fileID: 5363534620815271346, guid: b398bd836fdd947438918171df1175a1, type: 3}
+  - {fileID: 4562289371632371656, guid: d38e45071caae874b9706fcd5dcf73a7, type: 3}
+  minSpawnTime: 1
+  maxSpawnTime: 3
+  uncommonVehiclesRand: 0.65
+  rareVehiclesRand: 0.9
+--- !u!114 &1474915193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474915189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ebee3a31031394c94a363666468c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultVehicles:
+  - {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
+  uncommonVehicles:
+  - {fileID: 5053422646558080232, guid: c473c1eb10d87fb489edba8579b4dbe6, type: 3}
+  rareVehicles:
+  - {fileID: 5053422646558080232, guid: 46fef3a2a86306d46b8b916450228bc6, type: 3}
+  paths:
+  - {fileID: 7698633552309634753, guid: f2572e959dcda3343b2715d2c90ded08, type: 3}
+  - {fileID: 7623948174302505246, guid: 484d77190ff357d4c997205acffa1825, type: 3}
+  minSpawnTime: 1
+  maxSpawnTime: 3
+  uncommonVehiclesRand: 0.55
+  rareVehiclesRand: 0.8
 --- !u!1001 &1483364385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6880,6 +6912,18 @@ PrefabInstance:
       objectReference: {fileID: 1371497495}
     - target: {fileID: 2605425476588301923, guid: 18bd95bbe74885241b2483f12fc62c41, type: 3}
       propertyPath: waveRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605425476588301923, guid: 18bd95bbe74885241b2483f12fc62c41, type: 3}
+      propertyPath: hitColor.a
+      value: 0.62352943
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605425476588301923, guid: 18bd95bbe74885241b2483f12fc62c41, type: 3}
+      propertyPath: hitColor.g
+      value: 0.23993567
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605425476588301923, guid: 18bd95bbe74885241b2483f12fc62c41, type: 3}
+      propertyPath: hitColor.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2605425476588301923, guid: 18bd95bbe74885241b2483f12fc62c41, type: 3}
