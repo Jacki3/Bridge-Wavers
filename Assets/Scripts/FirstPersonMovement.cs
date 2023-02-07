@@ -49,14 +49,16 @@ public class FirstPersonMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        characterController.Move(move * moveSpeed * Time.deltaTime);
+        if (StateManager.gameState == StateManager.State.Playing)
+            characterController.Move(move * moveSpeed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
 
         velocity.y += gravityScale * Time.deltaTime;
 
-        characterController.Move(velocity * Time.deltaTime);
+        if (StateManager.gameState == StateManager.State.Playing)
+            characterController.Move(velocity * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

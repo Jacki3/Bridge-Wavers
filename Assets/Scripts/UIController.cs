@@ -29,6 +29,13 @@ public class UIController : MonoBehaviour
 
     private static UIController i;
 
+    public enum UITextComponent
+    {
+        none,
+        scoreText,
+        timerText
+    }
+
     private void Awake()
     {
         i = this;
@@ -46,14 +53,18 @@ public class UIController : MonoBehaviour
         i.SpawnScoreGain (score);
     }
 
-    private void UpdateText(string text) //need to ensure you can account for any type of text holder
+    private void UpdateText(UITextComponent component, string text) //need to ensure you can account for any type of text holder
     {
-        scoreText.SetText (text);
+        if (CoreUIElements.i != null)
+            CoreUIElements.i.GetTextComponent(component).text = text;
     }
 
-    public static void UpadteTextStatic(string textToAdd)
+    public static void UpadteTextStatic(
+        UITextComponent component,
+        string textToAdd
+    )
     {
-        i.UpdateText (textToAdd);
+        i.UpdateText (component, textToAdd);
     }
 
     public static void CountUpScore(int value)

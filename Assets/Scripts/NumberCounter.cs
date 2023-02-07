@@ -72,7 +72,8 @@ public class NumberCounter : MonoBehaviour
 
                 // text.SetText(previousValue.ToString(numberFormat));
                 UIController
-                    .UpadteTextStatic(previousValue.ToString(numberFormat));
+                    .UpadteTextStatic(UIController.UITextComponent.scoreText,
+                    previousValue.ToString(numberFormat));
 
                 yield return wait;
             }
@@ -88,7 +89,8 @@ public class NumberCounter : MonoBehaviour
                 }
 
                 UIController
-                    .UpadteTextStatic(previousValue.ToString(numberFormat));
+                    .UpadteTextStatic(UIController.UITextComponent.scoreText,
+                    previousValue.ToString(numberFormat));
 
                 yield return wait;
             }

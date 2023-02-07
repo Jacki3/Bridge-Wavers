@@ -8,6 +8,8 @@ public class ScoreController : MonoBehaviour
 
     private int totalScore;
 
+    private int highScore;
+
     private void Awake()
     {
         i = this;
@@ -15,7 +17,8 @@ public class ScoreController : MonoBehaviour
 
     private void Start()
     {
-        UIController.UpadteTextStatic("0");
+        UIController
+            .UpadteTextStatic(UIController.UITextComponent.scoreText, "0");
     }
 
     private void AddScore(int scoreToAdd)
@@ -40,5 +43,36 @@ public class ScoreController : MonoBehaviour
     public static void ResetScoreStatic()
     {
         i.ResetScore();
+    }
+
+    private void SetHighScore()
+    {
+        if (PlayerPrefs.HasKey("highScore"))
+        {
+            if (totalScore > PlayerPrefs.GetInt("highScore"))
+            {
+                highScore = totalScore;
+                PlayerPrefs.SetInt("highScore", highScore);
+                PlayerPrefs.Save();
+            }
+        }
+        else
+        {
+            if (totalScore > highScore)
+            {
+                highScore = totalScore;
+                PlayerPrefs.SetInt("highScore", highScore);
+                PlayerPrefs.Save();
+            }
+        }
+
+        UIController
+            .UpadteTextStatic(UIController.UITextComponent.timerText,
+            highScore.ToString());
+    }
+
+    public static void SetHighScoreStatic()
+    {
+        i.SetHighScore();
     }
 }
