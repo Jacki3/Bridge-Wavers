@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
     private void EndGame()
     {
         ScoreController.SetHighScoreStatic();
+        ScoreController.ResetScoreStatic();
         StateManager.gameState = StateManager.State.EndGame;
         StateManager.paused = true;
     }
