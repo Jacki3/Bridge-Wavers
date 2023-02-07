@@ -19,6 +19,9 @@ namespace PathCreation
         private List<PathCreator> paths = new List<PathCreator>();
 
         [SerializeField]
+        private PathCreator path;
+
+        [SerializeField]
         private int minSpawnTime = 0;
 
         [SerializeField]
@@ -30,9 +33,45 @@ namespace PathCreation
         [SerializeField]
         private float rareVehiclesRand = 0.9f;
 
+        [SerializeField]
+        private List<CarSequence> carSequences = new List<CarSequence>();
+
         private float timer;
 
         private int spawnTime;
+
+        [System.Serializable]
+        private class CarSequence
+        {
+            [System.Serializable]
+            private class Cars
+            {
+                [SerializeField]
+                private Car car;
+
+                [SerializeField]
+                private Count waitTimes;
+            }
+
+            [SerializeField]
+            private List<Cars> cars = new List<Cars>();
+
+            private int count = 0;
+        }
+
+        [System.Serializable]
+        public class Count
+        {
+            public int minimum;
+
+            public int maximum;
+
+            public Count(int min, int max)
+            {
+                minimum = min;
+                maximum = max;
+            }
+        }
 
         void Start()
         {

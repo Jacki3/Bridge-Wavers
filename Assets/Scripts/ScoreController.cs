@@ -66,9 +66,11 @@ public class ScoreController : MonoBehaviour
             }
         }
 
+        string currentHighScore = PlayerPrefs.GetInt("highScore").ToString();
+
         UIController
             .UpadteTextStatic(UIController.UITextComponent.timerText,
-            highScore.ToString());
+            currentHighScore);
     }
 
     public static void SetHighScoreStatic()

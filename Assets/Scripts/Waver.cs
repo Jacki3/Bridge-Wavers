@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class Waver : MonoBehaviour
 {
@@ -19,6 +20,12 @@ public class Waver : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image waverImage;
 
+    [SerializeField]
+    private AudioSource waverSoundSource;
+
+    [SerializeField]
+    private AudioClip waveSound;
+
     private Color defaultColor;
 
     private float nextWave;
@@ -34,7 +41,11 @@ public class Waver : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E) && Time.time > nextWave)
+        if (
+            Input.GetKeyUp(KeyCode.E) &&
+            Time.time > nextWave &&
+            StateManager.gameState == StateManager.State.Playing
+        )
         {
             ColorChange(true);
         }
@@ -42,7 +53,12 @@ public class Waver : MonoBehaviour
 
     public void ColorChange(bool isWave)
     {
-        if (wave != null) wave(playerName);
+        if (wave != null)
+        {
+            wave (playerName);
+            if (waverSoundSource != null && waveSound != null)
+                waverSoundSource.PlayOneShot(waveSound);
+        }
         waverImage.color = isWave ? waveColor : hitColor;
         nextWave = Time.time + waveRate;
         StartCoroutine(LerpColourWave());
