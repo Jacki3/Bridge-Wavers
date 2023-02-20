@@ -14,7 +14,7 @@ public class Waver : MonoBehaviour
     [Header("Feedbacks")]
     [SerializeField]
     private MMFeedbacks waveFeedback;
-        [SerializeField]
+    [SerializeField]
     private MMFeedbacks hitFeedback;
 
     private float nextWave;
