@@ -9,6 +9,9 @@ public class FirstPersonMovement : MonoBehaviour
     private float moveSpeed = 12;
 
     [SerializeField]
+    private float sprintSpeed = 16;
+
+    [SerializeField]
     private float gravityScale = -10;
 
     [SerializeField]
@@ -31,6 +34,8 @@ public class FirstPersonMovement : MonoBehaviour
 
     private Vector3 defaultPosition;
 
+    private float speed;
+
     void Start()
     {
         defaultPosition = transform.position;
@@ -47,10 +52,15 @@ public class FirstPersonMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        if (Input.GetKey(KeyCode.LeftShift))
+            speed = sprintSpeed;
+        else
+            speed = moveSpeed;
+
         Vector3 move = transform.right * x + transform.forward * z;
 
         if (StateManager.gameState == StateManager.State.Playing)
-            characterController.Move(move * moveSpeed * Time.deltaTime);
+            characterController.Move(move * speed * Time.deltaTime);
 
         if (Input.GetButtonDown("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
@@ -75,7 +85,7 @@ public class FirstPersonMovement : MonoBehaviour
     private void ResetPosition()
     {
         Waver playerWaver = GetComponentInChildren<Waver>();
-        if (playerWaver != null) playerWaver.ColorChange(false);
+        playerWaver?.ColorChange(false);
         characterController.enabled = false;
         transform.position = defaultPosition;
         characterController.enabled = true;

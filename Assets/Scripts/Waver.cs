@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
-
+using MoreMountains.Feedbacks;
 public class Waver : MonoBehaviour
 {
     public string playerName;
@@ -11,33 +11,17 @@ public class Waver : MonoBehaviour
     [SerializeField]
     private float waveRate;
 
+    [Header("Feedbacks")]
     [SerializeField]
-    private Color waveColor;
-
-    [SerializeField]
-    private Color hitColor;
-
-    [SerializeField]
-    private UnityEngine.UI.Image waverImage;
-
-    [SerializeField]
-    private AudioSource waverSoundSource;
-
-    [SerializeField]
-    private AudioClip waveSound;
-
-    private Color defaultColor;
+    private MMFeedbacks waveFeedback;
+        [SerializeField]
+    private MMFeedbacks hitFeedback;
 
     private float nextWave;
 
     public delegate void WaveHandler(string name);
 
     public static event WaveHandler wave;
-
-    void Start()
-    {
-        defaultColor = waverImage.color;
-    }
 
     void Update()
     {
@@ -53,28 +37,15 @@ public class Waver : MonoBehaviour
 
     public void ColorChange(bool isWave)
     {
-        if (wave != null)
+        if (wave != null && isWave)
         {
+            waveFeedback?.PlayFeedbacks();
             wave (playerName);
-            if (waverSoundSource != null && waveSound != null)
-                waverSoundSource.PlayOneShot(waveSound);
+            nextWave = Time.time + waveRate;
         }
-        waverImage.color = isWave ? waveColor : hitColor;
-        nextWave = Time.time + waveRate;
-        StartCoroutine(LerpColourWave());
-    }
-
-    IEnumerator LerpColourWave()
-    {
-        float time = 0;
-        Color startValue = waverImage.color;
-        while (time < waveRate)
+        else
         {
-            waverImage.color =
-                Color.Lerp(startValue, defaultColor, time / waveRate);
-            time += Time.deltaTime;
-            yield return null;
+            hitFeedback?.PlayFeedbacks();
         }
-        waverImage.color = defaultColor;
     }
 }

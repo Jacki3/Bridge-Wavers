@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using Unity.Mathematics;
 
 public class FirstPersonLook : MonoBehaviour
@@ -9,13 +10,21 @@ public class FirstPersonLook : MonoBehaviour
     private float sens = 100f;
 
     [SerializeField]
+    private float zoomFOV = 50f;
+
+    [SerializeField]
     private Transform playerBod;
 
     private float xRot = 0;
 
+    public Camera playerCam;
+
+    private float defaultFOV;
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        defaultFOV = playerCam.fieldOfView;
     }
 
     void Update()
@@ -28,5 +37,10 @@ public class FirstPersonLook : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
         playerBod.Rotate(Vector3.up * mouseX);
+
+        if (Input.GetMouseButton(1))
+            playerCam.fieldOfView = zoomFOV;
+        else
+            playerCam.fieldOfView = defaultFOV;
     }
 }

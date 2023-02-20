@@ -22,10 +22,10 @@ namespace PathCreation
         private PathCreator path;
 
         [SerializeField]
-        private int minSpawnTime = 0;
+        private float minSpawnTime = 0;
 
         [SerializeField]
-        private int maxSpawnTime = 0;
+        private float maxSpawnTime = 0;
 
         [SerializeField]
         private float uncommonVehiclesRand = 0.65f;
@@ -38,7 +38,7 @@ namespace PathCreation
 
         private float timer;
 
-        private int spawnTime;
+        private float spawnTime;
 
         [System.Serializable]
         private class CarSequence

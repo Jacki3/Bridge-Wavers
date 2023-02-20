@@ -53,11 +53,11 @@ MonoBehaviour:
     waitTimes:
       minimum: 2
       maximum: 3
-  - car: {fileID: 5053422646558080232, guid: c473c1eb10d87fb489edba8579b4dbe6, type: 3}
+  - car: {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
     waitTimes:
       minimum: 3
       maximum: 5
-  - car: {fileID: 5053422646558080232, guid: 46fef3a2a86306d46b8b916450228bc6, type: 3}
+  - car: {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
     waitTimes:
       minimum: 1
       maximum: 1
