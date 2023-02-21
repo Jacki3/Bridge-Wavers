@@ -38,5 +38,5 @@ Material:
     - _IntersectPower: 0.6
     - _RimStrength: 1.34
     m_Colors:
-    - _Color: {r: 0, g: 0.81047535, b: 1, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
