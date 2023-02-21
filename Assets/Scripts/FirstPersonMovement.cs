@@ -1,15 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Windows.Speech;
-
+using MoreMountains.Feedbacks;
 public class FirstPersonMovement : MonoBehaviour
 {
+    [Header("Feedbacks")]
+    [SerializeField]
+    private MMFeedbacks dashFeedbacks;
+
     [SerializeField]
     private float moveSpeed = 12;
 
-    [SerializeField]
-    private float sprintSpeed = 16;
 
     [SerializeField]
     private float gravityScale = -10;
@@ -25,6 +25,11 @@ public class FirstPersonMovement : MonoBehaviour
 
     [SerializeField]
     private LayerMask groundMask;
+    [SerializeField]
+    private float dashTime;
+    [SerializeField]
+    private float dashSpeed;
+
 
     private bool isGrounded;
 
@@ -34,7 +39,7 @@ public class FirstPersonMovement : MonoBehaviour
 
     private Vector3 defaultPosition;
 
-    private float speed;
+    private Vector3 move;
 
     void Start()
     {
@@ -52,16 +57,18 @@ public class FirstPersonMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.LeftShift))
-            speed = sprintSpeed;
-        else
-            speed = moveSpeed;
 
-        Vector3 move = transform.right * x + transform.forward * z;
+
+        move = transform.right * x + transform.forward * z;
 
         if (StateManager.gameState == StateManager.State.Playing)
-            characterController.Move(move * speed * Time.deltaTime);
-
+{
+    if (Input.GetKeyDown(KeyCode.LeftShift))
+{
+    StartCoroutine(DashCoroutine());
+}
+                characterController.Move(move * moveSpeed * Time.deltaTime);
+}
         if (Input.GetButtonDown("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
 
@@ -69,6 +76,17 @@ public class FirstPersonMovement : MonoBehaviour
 
         if (StateManager.gameState == StateManager.State.Playing)
             characterController.Move(velocity * Time.deltaTime);
+    }
+
+    private IEnumerator DashCoroutine()
+    {
+        float startTime = Time.time;
+        dashFeedbacks?.PlayFeedbacks();
+        while (Time.time < startTime + dashTime)
+        {
+            characterController.Move(move * dashSpeed * Time.deltaTime);
+            yield return null; // this will make Unity stop here and continue next frame
+        }
     }
 
     private void OnTriggerEnter(Collider other)
