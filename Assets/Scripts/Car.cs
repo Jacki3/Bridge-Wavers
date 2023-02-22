@@ -3,16 +3,12 @@ using System.Collections.Generic;
 using PathCreation.Examples;
 using UnityEditor.Experimental;
 using UnityEngine;
+using MoreMountains.Feedbacks;
 
 public class Car : PathFollower
 {
+    public MMFeedbacks hornFeedbacks;
     public int scoreToAdd;
-
-    [SerializeField]
-    private AudioSource beepSource;
-
-    [SerializeField]
-    private AudioClip beepSound;
 
     [SerializeField]
     private Vector3 carScale;
@@ -32,7 +28,7 @@ public class Car : PathFollower
 
     public void Beep()
     {
-        beepSource.PlayOneShot (beepSound);
+        hornFeedbacks?.PlayFeedbacks();
     }
 
     IEnumerator LerpFunction(Vector3 endValue, float duration)

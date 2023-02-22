@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    [SerializeField]
-    private ScoreGainUI scoreGain;
 
     [SerializeField]
     private List<WaveDetector> waveDetectors = new List<WaveDetector>();

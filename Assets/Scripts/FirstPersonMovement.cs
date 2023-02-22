@@ -3,13 +3,14 @@ using UnityEngine;
 using MoreMountains.Feedbacks;
 public class FirstPersonMovement : MonoBehaviour
 {
+    [SerializeField]
+    private float moveSpeed = 12;
     [Header("Feedbacks")]
+
     [SerializeField]
     private MMFeedbacks dashFeedbacks;
 
-    [SerializeField]
-    private float moveSpeed = 12;
-
+    [Header("Jump Settings")]
 
     [SerializeField]
     private float gravityScale = -10;
@@ -25,6 +26,9 @@ public class FirstPersonMovement : MonoBehaviour
 
     [SerializeField]
     private LayerMask groundMask;
+
+    [Header("Dash Settings")]
+
     [SerializeField]
     private float dashTime;
     [SerializeField]
@@ -40,6 +44,7 @@ public class FirstPersonMovement : MonoBehaviour
     private Vector3 defaultPosition;
 
     private Vector3 move;
+
 
     void Start()
     {
@@ -57,18 +62,17 @@ public class FirstPersonMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-
-
         move = transform.right * x + transform.forward * z;
 
         if (StateManager.gameState == StateManager.State.Playing)
-{
-    if (Input.GetKeyDown(KeyCode.LeftShift))
-{
-    StartCoroutine(DashCoroutine());
-}
-                characterController.Move(move * moveSpeed * Time.deltaTime);
-}
+        {
+            if (Input.GetKeyDown(KeyCode.LeftShift) && move != Vector3.zero)
+            {
+                StartCoroutine(DashCoroutine());
+            }
+            characterController.Move(move * moveSpeed * Time.deltaTime);
+        }
+
         if (Input.GetButtonDown("Jump") && isGrounded)
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityScale);
 
