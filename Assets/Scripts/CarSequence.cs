@@ -9,7 +9,7 @@ public class CarSequence : MonoBehaviour
     [System.Serializable]
     public class Cars
     {
-        public Car car;
+        public Car[] car;
 
         public CarSpawnerSequences.Count waitTimes;
     }

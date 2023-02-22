@@ -52,7 +52,7 @@ namespace PathCreation
         }
 
 
-#region Internal methods
+        #region Internal methods
         /// Used by the path editor to initialise some data
         public void InitializeEditorData(bool in2DMode)
         {
@@ -63,7 +63,7 @@ namespace PathCreation
             editorData.bezierOrVertexPathModified -= TriggerPathUpdate;
             editorData.bezierOrVertexPathModified += TriggerPathUpdate;
 
-            editorData.Initialize (in2DMode);
+            editorData.Initialize(in2DMode);
             initialized = true;
         }
 
@@ -95,7 +95,7 @@ namespace PathCreation
             {
                 if (path != null)
                 {
-                    path.UpdateTransform (transform);
+                    path.UpdateTransform(transform);
 
                     if (globalEditorDisplaySettings == null)
                     {
@@ -132,6 +132,6 @@ namespace PathCreation
 #endif
 
 
-#endregion
+        #endregion
     }
 }

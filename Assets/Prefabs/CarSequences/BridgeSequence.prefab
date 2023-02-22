@@ -45,20 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cars:
-  - car: {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
+  - car:
+    - {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
+    - {fileID: 5053422646558080232, guid: 0228aa1a628db5c4d835f85e83ab04d5, type: 3}
+    - {fileID: 5053422646558080232, guid: a281c0fb0d30f3942983671fc172ac02, type: 3}
+    - {fileID: 5053422646558080232, guid: 9713af372dc56634395497a2ea2e47af, type: 3}
     waitTimes:
       minimum: 2
       maximum: 4
-  - car: {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
-    waitTimes:
-      minimum: 3
-      maximum: 6
-  - car: {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
-    waitTimes:
-      minimum: 3
-      maximum: 5
-  - car: {fileID: 5053422646558080232, guid: 680afba7f4bf16344aace0bfa8f91915, type: 3}
-    waitTimes:
-      minimum: 1
-      maximum: 2
-  count: 3
+  count: 0

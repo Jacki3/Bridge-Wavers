@@ -45,8 +45,10 @@ namespace PathCreation
 
             foreach (CarSequence.Cars cars in newSequence.cars)
             {
+                int randCarIndex = Random.Range(0, newSequence.cars[newSequence.count].car.Length);
+                Car newCarModel = newSequence.cars[newSequence.count].car[randCarIndex];
                 Car newCar =
-                    Instantiate(newSequence.cars[newSequence.count].car);
+                    Instantiate(newCarModel);
                 newCar.pathCreator = path;
                 newCar.endOfPathInstruction = EndOfPathInstruction.Stop;
                 int waitTime =

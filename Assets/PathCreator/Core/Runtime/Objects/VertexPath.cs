@@ -12,7 +12,7 @@ namespace PathCreation
     /// Other info about the path (tangents, normals, rotation) can also be retrieved in this manner.
     public class VertexPath
     {
-#region Fields
+        #region Fields
         public readonly PathSpace space;
 
         public readonly bool isClosedLoop;
@@ -46,11 +46,11 @@ namespace PathCreation
         Transform transform;
 
 
-#endregion
+        #endregion
 
 
 
-#region Constructors
+        #region Constructors
         /// <summary> Splits bezier path into array of vertices along the path.</summary>
         ///<param name="maxAngleError">How much can the angle of the path change before a vertex is added. This allows fewer vertices to be generated in straighter sections.</param>
         ///<param name="minVertexDst">Vertices won't be added closer together than this distance, regardless of angle error.</param>
@@ -259,11 +259,11 @@ namespace PathCreation
         }
 
 
-#endregion
+        #endregion
 
 
 
-#region Public methods and accessors
+        #region Public methods and accessors
 
         public void UpdateTransform(Transform transform)
         {
@@ -449,11 +449,11 @@ namespace PathCreation
         }
 
 
-#endregion
+        #endregion
 
 
 
-#region Internal methods
+        #region Internal methods
         /// For a given value 't' between 0 and 1, calculate the indices of the two vertices before and after t.
         /// Also calculate how far t is between those two vertices as a percentage between 0 and 1.
         TimeOnPathData
@@ -583,7 +583,7 @@ namespace PathCreation
         }
 
 
-#endregion
+        #endregion
 
     }
 }
