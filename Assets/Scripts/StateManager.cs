@@ -8,7 +8,8 @@ public static class StateManager
     {
         Menu,
         Playing,
-        EndGame
+        EndGame,
+        Paused
     }
 
     public static bool paused;

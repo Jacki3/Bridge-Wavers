@@ -26,7 +26,7 @@ public class Waver : MonoBehaviour
     void Update()
     {
         if (
-            Input.GetKeyUp(KeyCode.E) &&
+            Input.GetButtonUp("Wave") &&
             Time.time > nextWave &&
             StateManager.gameState == StateManager.State.Playing
         )
@@ -40,7 +40,7 @@ public class Waver : MonoBehaviour
         if (wave != null && isWave)
         {
             waveFeedback?.PlayFeedbacks();
-            wave (playerName);
+            wave(playerName);
             nextWave = Time.time + waveRate;
         }
         else

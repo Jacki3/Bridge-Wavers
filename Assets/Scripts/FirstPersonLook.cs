@@ -23,7 +23,6 @@ public class FirstPersonLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         defaultFOV = playerCam.fieldOfView;
     }
 
@@ -32,15 +31,20 @@ public class FirstPersonLook : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * sens * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sens * Time.deltaTime;
 
-        xRot += mouseY;
-        xRot = Mathf.Clamp(xRot, -90f, 90f);
+        if (StateManager.gameState == StateManager.State.Playing)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
 
-        transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
-        playerBod.Rotate(Vector3.up * mouseX);
+            xRot += mouseY;
+            xRot = Mathf.Clamp(xRot, -90f, 90f);
 
-        if (Input.GetMouseButton(1))
-            playerCam.fieldOfView = zoomFOV;
+            transform.localRotation = Quaternion.Euler(xRot, 0f, 0f);
+            playerBod.Rotate(Vector3.up * mouseX);
+        }
         else
-            playerCam.fieldOfView = defaultFOV;
+            Cursor.lockState = CursorLockMode.None;
+
+
+
     }
 }

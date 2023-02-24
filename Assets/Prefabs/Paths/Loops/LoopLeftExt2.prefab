@@ -232,8 +232,8 @@ MonoBehaviour:
       - {x: -18.974094, y: -1.7818968, z: 12.021479}
       - {x: -18.7965, y: -1.7818971, z: 12.034943}
       - {x: -19.22509, y: -1.7818962, z: 12.043712}
-      - {x: 8.98444, y: -1.7818966, z: 12.065123}
-      - {x: 9.160836, y: -1.7818971, z: 12.06769}
+      - {x: 20.51803, y: -1.7818966, z: 12.065123}
+      - {x: 20.694426, y: -1.7818971, z: 12.06769}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
     keepConstantHandleSize: 0
     showNormalsInVertexMode: 0
     showBezierPathInVertexMode: 0
-    showDisplayOptions: 1
+    showDisplayOptions: 0
     showPathOptions: 0
     showVertexPathDisplayOptions: 0
     showVertexPathOptions: 1

@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &3744869212181627766
 MonoBehaviour:
@@ -241,8 +241,8 @@ MonoBehaviour:
       - {x: -18.855862, y: -1.7818966, z: 11.876077}
       - {x: -18.408636, y: -1.7818971, z: 11.882586}
       - {x: -18.183561, y: -1.7818973, z: 11.885861}
-      - {x: 6.2073936, y: -1.7819228, z: 11.883794}
-      - {x: 8.952414, y: -1.7819495, z: 11.881656}
+      - {x: 21.113348, y: -1.7819228, z: 11.883794}
+      - {x: 23.858368, y: -1.7819495, z: 11.881656}
       isClosed: 0
       space: 0
       controlMode: 0
@@ -320,11 +320,11 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 90
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0
     vertexPathMinVertexSpacing: 0.007
     showTransformTool: 1
-    showPathBounds: 1
+    showPathBounds: 0
     showPerSegmentBounds: 1
     displayAnchorPoints: 1
     displayControlPoints: 1

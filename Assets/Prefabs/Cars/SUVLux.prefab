@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1840317999}
   - component: {fileID: 1840318000}
   - component: {fileID: 1840318001}
+  - component: {fileID: 380323716737000151}
   m_Layer: 0
   m_Name: BeepFeedback
   m_TagString: Untagged
@@ -81,6 +82,7 @@ MonoBehaviour:
   Feedbacks:
   - {fileID: 1840318000}
   - {fileID: 1840318001}
+  - {fileID: 380323716737000151}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -185,7 +187,7 @@ MonoBehaviour:
     Quantized: 0
     TargetBPM: 120
   DebugActive: 0
-  Sfx: {fileID: 8300000, guid: c4ac4da806de67548819c381008932f6, type: 3}
+  Sfx: {fileID: 8300000, guid: d12fb97e9ca57e1489f89a22b7bcd2e1, type: 3}
   RandomSfx: []
   TestButton: 0
   TestStopButton: 0
@@ -277,6 +279,54 @@ MonoBehaviour:
   AllowAdditivePlays: 0
   DetermineScaleOnPlay: 0
   DestinationScale: 2
+--- !u!114 &380323716737000151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840317997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2ce51367856bd49b72678cc4263225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Sound
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    ExcludeFromHoldingPauses: 0
+    ContributeToTotalDuration: 1
+    InitialDelay: 0.4
+    CooldownDuration: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Sfx: {fileID: 8300000, guid: d12fb97e9ca57e1489f89a22b7bcd2e1, type: 3}
+  RandomSfx: []
+  TestButton: 0
+  TestStopButton: 0
+  PlayMethod: 0
+  PoolSize: 10
+  MinVolume: 1
+  MaxVolume: 1
+  MinPitch: 1
+  MaxPitch: 1
+  SfxAudioMixerGroup: {fileID: 0}
+  Priority: 128
 --- !u!1 &3224640992535598116
 GameObject:
   m_ObjectHideFlags: 0
@@ -306,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 3224640992535598116}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -50, y: -50, z: -50}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1405403441}
@@ -356,9 +406,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8ff09eff37a384148b9282443fb862c6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 26f9f894c832e234e91a99e33cda5548, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0

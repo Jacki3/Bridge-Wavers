@@ -66,7 +66,7 @@ public class FirstPersonMovement : MonoBehaviour
 
         if (StateManager.gameState == StateManager.State.Playing)
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && move != Vector3.zero)
+            if (Input.GetButtonDown("Dash") && move != Vector3.zero)
             {
                 StartCoroutine(DashCoroutine());
             }
