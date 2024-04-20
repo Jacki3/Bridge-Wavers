@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
+using PathCreation;
 
-namespace PathCreation.Examples
-{
     // Moves along a path at constant speed.
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollower : MonoBehaviour
@@ -12,7 +11,7 @@ namespace PathCreation.Examples
 
         public float speed = 5;
 
-        float distanceTravelled;
+        private float distanceTravelled;
 
         public virtual void Start()
         {
@@ -51,4 +50,3 @@ namespace PathCreation.Examples
                     .GetClosestDistanceAlongPath(transform.position);
         }
     }
-}

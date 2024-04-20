@@ -9,17 +9,10 @@ public class Car : PathFollower
 {
     public MMFeedbacks hornFeedbacks;
     public int scoreToAdd;
-
     [SerializeField]
-    private Vector3 carScale;
-
-    [SerializeField]
-    private float timeToScale = 1.0f;
-
-    private void OnEnable()
-    {
-        StartCoroutine(LerpFunction(carScale, timeToScale));
-    }
+    [Tooltip("The chance this car has to spawn (as a percentage)")]
+    [Range(0.0f, 100.0f)]
+    public float spawnChance = 50.0f;
 
     public void WaveBack()
     {
@@ -29,19 +22,6 @@ public class Car : PathFollower
     public void Beep()
     {
         hornFeedbacks?.PlayFeedbacks();
-    }
-
-    IEnumerator LerpFunction(Vector3 endValue, float duration)
-    {
-        float time = 0;
-        Vector3 startValue = transform.localScale;
-        while (time < duration)
-        {
-            transform.localScale =
-                Vector3.Lerp(startValue, endValue, time / duration);
-            time += Time.deltaTime;
-            yield return null;
-        }
-        transform.localScale = endValue;
+        //should we not be adding score here using the score controller? Not only this but the method should be inheritable by children cars! -- why is this method being called by above? Seems pointless.
     }
 }
