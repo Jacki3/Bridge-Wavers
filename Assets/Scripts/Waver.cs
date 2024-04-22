@@ -40,7 +40,7 @@ public class Waver : MonoBehaviour
         if (wave != null && isWave)
         {
             waveFeedback?.PlayFeedbacks();
-            wave(playerName);
+            wave(playerName); //only do this if we are in a wave detecting zone
             nextWave = Time.time + waveRate;
         }
         else

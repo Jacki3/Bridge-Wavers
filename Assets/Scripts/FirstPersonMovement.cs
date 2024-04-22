@@ -4,46 +4,36 @@ using MoreMountains.Feedbacks;
 public class FirstPersonMovement : MonoBehaviour
 {
     [SerializeField]
+    protected string playerName;
+
+    [SerializeField]
     private float moveSpeed = 12;
     [Header("Feedbacks")]
-
     [SerializeField]
     private MMFeedbacks dashFeedbacks;
-
     [Header("Jump Settings")]
-
     [SerializeField]
     private float gravityScale = -10;
-
     [SerializeField]
     private Transform groundCheck;
-
     [SerializeField]
     private float groundDist;
-
     [SerializeField]
     private float jumpHeight;
-
     [SerializeField]
     private LayerMask groundMask;
-
     [Header("Dash Settings")]
-
     [SerializeField]
     private float dashTime;
     [SerializeField]
     private float dashSpeed;
 
-
     private bool isGrounded;
-
     private CharacterController characterController;
-
     private Vector3 velocity;
-
     private Vector3 defaultPosition;
-
     private Vector3 move;
+    private bool canWave = false;
 
 
     void Start()
@@ -101,6 +91,21 @@ public class FirstPersonMovement : MonoBehaviour
             hitCar.Beep();
             ResetPosition();
             ScoreController.ResetScoreStatic();
+        }
+
+        WaveDetector waveDetector = other.GetComponent<WaveDetector>();
+        if (waveDetector != null) 
+        {
+            canWave = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        WaveDetector waveDetector = other.GetComponent<WaveDetector>();
+        if (waveDetector != null)
+        {
+            canWave = false;
         }
     }
 
