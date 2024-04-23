@@ -89,7 +89,6 @@ public class TrafficSpawner : MonoBehaviour
     private void SpawnCar()
     {
         int pathIndex = Random.Range(0, paths.Length);
-        Debug.Log(paths[pathIndex].path.GetPoint(0));
 
         // Randomly select a car prefab based on their likelihood of spawning
         Car selectedCar = ChooseRandomCarPrefab();

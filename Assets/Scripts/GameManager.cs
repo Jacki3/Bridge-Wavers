@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadMenu()
     {
-        //do fade stuff in ienumerator
+        //do fade stuff in animator
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }

@@ -30,7 +30,7 @@ public class WaveManager : MonoBehaviour
 
                 ScoreController.AddScoreStatic (score);
 
-                car.WaveBack();
+                car.WaveBack(null);
             }
         }
     }

@@ -352,7 +352,7 @@ MonoBehaviour:
   speed: 3
   hornFeedbacks: {fileID: 1840317999}
   scoreToAdd: 50
-  spawnChance: 51.3
+  spawnChance: 70.8
 --- !u!82 &8481831034751167780
 AudioSource:
   m_ObjectHideFlags: 0

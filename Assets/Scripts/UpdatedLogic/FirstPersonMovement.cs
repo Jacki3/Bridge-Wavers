@@ -3,14 +3,21 @@ using UnityEngine;
 using MoreMountains.Feedbacks;
 public class FirstPersonMovement : MonoBehaviour
 {
+    #region serialized vars
     [SerializeField]
     protected string playerName;
 
     [SerializeField]
     private float moveSpeed = 12;
+    [SerializeField]
+    private float waveRate;
     [Header("Feedbacks")]
     [SerializeField]
     private MMFeedbacks dashFeedbacks;
+    [SerializeField]
+    private MMFeedbacks waveFeedback;
+    [SerializeField]
+    private MMFeedbacks hitFeedback;
     [Header("Jump Settings")]
     [SerializeField]
     private float gravityScale = -10;
@@ -27,14 +34,22 @@ public class FirstPersonMovement : MonoBehaviour
     private float dashTime;
     [SerializeField]
     private float dashSpeed;
+    #endregion
 
+    #region private vars
     private bool isGrounded;
     private CharacterController characterController;
     private Vector3 velocity;
     private Vector3 defaultPosition;
     private Vector3 move;
     private bool canWave = false;
+    private float nextWave;
+    #endregion
 
+    #region static vars
+    public delegate void WaveHandler(string name);
+    public static event WaveHandler wave;
+    #endregion
 
     void Start()
     {
@@ -70,6 +85,11 @@ public class FirstPersonMovement : MonoBehaviour
 
         if (StateManager.gameState == StateManager.State.Playing)
             characterController.Move(velocity * Time.deltaTime);
+
+        if (Input.GetButtonUp("Wave") && Time.time > nextWave && StateManager.gameState == StateManager.State.Playing)
+        {
+            Wave();
+        }
     }
 
     private IEnumerator DashCoroutine()
@@ -85,34 +105,52 @@ public class FirstPersonMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Player was hit by an oncoming car
         Car hitCar = other.GetComponent<Car>();
         if (hitCar != null)
         {
             hitCar.Beep();
+            hitFeedback?.PlayFeedbacks();
             ResetPosition();
-            ScoreController.ResetScoreStatic();
+            ScoreController.ResetScoreStatic(); //Resetting score seems a bit too harsh; should be a multiplier
         }
 
-        WaveDetector waveDetector = other.GetComponent<WaveDetector>();
-        if (waveDetector != null) 
+        //Player is a wave zone
+        WaveOperatedZone waveZone = other.GetComponent<WaveOperatedZone>();
+        if (waveZone != null) 
         {
+            waveZone.SetPlayerName(playerName); //we should also highlight the zone to show we are in a wave operated zone (an update method on the zone would work well)
             canWave = true;
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        WaveDetector waveDetector = other.GetComponent<WaveDetector>();
-        if (waveDetector != null)
+        //Player has now left a wave operated zone
+        WaveOperatedZone waveZone = other.GetComponent<WaveOperatedZone>();
+        if (waveZone != null)
         {
+            waveZone.SetPlayerName(string.Empty);
             canWave = false;
         }
     }
 
+    private void Wave()
+    {
+        if(wave != null)
+        {
+            if(canWave)
+            { 
+                wave(playerName); 
+            }
+        }
+        waveFeedback?.PlayFeedbacks();
+        nextWave = Time.time + waveRate;
+    }
+
     private void ResetPosition()
     {
-        Waver playerWaver = GetComponentInChildren<Waver>();
-        playerWaver?.ColorChange(false);
+        //Force player to not move so we can reset their position to the original starting place
         characterController.enabled = false;
         transform.position = defaultPosition;
         characterController.enabled = true;

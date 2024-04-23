@@ -349,10 +349,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
   endOfPathInstruction: 2
-  speed: 2
+  speed: 3.3
   hornFeedbacks: {fileID: 1840317999}
-  scoreToAdd: 50
-  spawnChance: 50
+  scoreToAdd: 200
+  spawnChance: 95
 --- !u!82 &8481831034751167780
 AudioSource:
   m_ObjectHideFlags: 0
