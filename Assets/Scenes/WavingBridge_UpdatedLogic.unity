@@ -5645,7 +5645,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 775649339}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0f7d61faae5d12a449619239c43b6faf, type: 3}
@@ -11779,8 +11779,7 @@ MonoBehaviour:
   - {fileID: 5053422646558080232, guid: a281c0fb0d30f3942983671fc172ac02, type: 3}
   - {fileID: 5053422646558080232, guid: 9713af372dc56634395497a2ea2e47af, type: 3}
   paths:
-  - {fileID: 7983185383534829438, guid: 077e3ed48378cf94396faaafc9381c3b, type: 3}
-  - {fileID: 3744869212181627766, guid: ef5fd8900251b934592bb39d6675fd8b, type: 3}
+  - {fileID: 2635851893120399769, guid: 59903095c3bf71148893dd67ada7d6b2, type: 3}
   spawnRate:
     min: 7
     max: 15

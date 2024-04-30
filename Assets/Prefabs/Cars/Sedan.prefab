@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 1840317999}
   - component: {fileID: 1840318000}
   - component: {fileID: 1840318001}
+  - component: {fileID: 8169443694272091394}
   m_Layer: 0
   m_Name: BeepFeedback
   m_TagString: Untagged
@@ -81,6 +82,7 @@ MonoBehaviour:
   Feedbacks:
   - {fileID: 1840318000}
   - {fileID: 1840318001}
+  - {fileID: 8169443694272091394}
   InitializationMode: 2
   SafeMode: 3
   Direction: 0
@@ -277,6 +279,47 @@ MonoBehaviour:
   AllowAdditivePlays: 0
   DetermineScaleOnPlay: 0
   DestinationScale: 2
+--- !u!114 &8169443694272091394
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840317997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cf8e1825623fb34b9fc92dbef54ec56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Active: 1
+  Label: Flash
+  Chance: 100
+  Timing:
+    TimescaleMode: 0
+    ExcludeFromHoldingPauses: 0
+    ContributeToTotalDuration: 1
+    InitialDelay: 0
+    CooldownDuration: 0
+    InterruptsOnStop: 1
+    NumberOfRepeats: 0
+    RepeatForever: 0
+    DelayBetweenRepeats: 1
+    MMFeedbacksDirectionCondition: 0
+    PlayDirection: 0
+    ConstantIntensity: 0
+    UseIntensityInterval: 0
+    IntensityIntervalMin: 0
+    IntensityIntervalMax: 0
+    Sequence: {fileID: 0}
+    TrackID: 0
+    Quantized: 0
+    TargetBPM: 120
+  DebugActive: 0
+  Channel: 0
+  FlashColor: {r: 0.3254717, g: 1, b: 0.55488944, a: 0.5686275}
+  FlashDuration: 0.2
+  FlashAlpha: 0.7
+  FlashID: 0
 --- !u!1 &3224640992535598116
 GameObject:
   m_ObjectHideFlags: 0

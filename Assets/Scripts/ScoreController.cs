@@ -10,8 +10,11 @@ public class ScoreController : MonoBehaviour
 
     private int highScore;
 
+    //multiplier?
+
     private void Awake()
     {
+        //its ok to do this but consider the need for using static methods? maybe just set managers at start?
         i = this;
     }
 

@@ -10,26 +10,27 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float levelTime; //perhaps better in a separate variable script
     [SerializeField]
-    private GameObject pauseMenu;
+    private GameObject pauseMenu; //this does not belong here but in a pause game manager
 
     [SerializeField]
-    private AudioSource music;
+    private AudioSource music; //same again - should be in a separate audio manager (even game music manager)
 
     private void OnEnable()
     {
-        Timer.TimeEnded += EndGame;
+        Timer.TimeEnded += EndGame; //doesnt work here , should be in a separate timer manager - we are simply listening for events and triggering states rather than controlling individual components
     }
 
     private void OnDisable()
     {
-        Timer.TimeEnded -= EndGame;
+        Timer.TimeEnded -= EndGame; //same as above
     }
 
     private void Start()
     {
-        StateManager.gameState = StateManager.State.Menu;
+        StateManager.gameState = StateManager.State.Menu; //this works here
     }
 
+    //not bad but use generic inputs - could even be handled in a separate input manager (prob should be)
     private void Update()
     {
         if (
@@ -47,14 +48,14 @@ public class GameManager : MonoBehaviour
 
     private void StartGame()
     {
-        StateManager.gameState = StateManager.State.Playing;
+        StateManager.gameState = StateManager.State.Playing; //all fine but remember that trigger for starting game is listend for in the timer manager
         StateManager.paused = false;
         Timer.StartTimer(levelTime);
     }
 
     private void EndGame()
     {
-        ScoreController.SetHighScoreStatic();
+        ScoreController.SetHighScoreStatic(); //same again - should be in a separate score manager - we are simply listening for events and triggering states rather than controlling individual components
         ScoreController.ResetScoreStatic();
         StateManager.gameState = StateManager.State.EndGame;
         StateManager.paused = true;
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
             StateManager.gameState = StateManager.State.Paused;
             StateManager.paused = true;
             if (pauseMenu != null)
-                pauseMenu.SetActive(true);
+                pauseMenu.SetActive(true); //pause menu listens for triggers in the pause game manager
         }
         else
         {
@@ -82,18 +83,18 @@ public class GameManager : MonoBehaviour
         StateManager.gameState = StateManager.State.Playing;
         StateManager.paused = false;
         if (pauseMenu != null)
-            pauseMenu.SetActive(false);
+            pauseMenu.SetActive(false); //pause menu listens for triggers in the pause game manager
     }
 
     public void RestartLevel()
     {
         Pause(true);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); //separator for level manager
     }
 
     public void LoadMenu()
     {
-        //do fade stuff in animator
+        //do fade stuff in animator -- should be in level/scene manager script
         Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
@@ -103,7 +104,7 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void MuteMusic()
+    public void MuteMusic() //should be in a separate audio manager
     {
         if (!music.mute)
             music.mute = true;
